@@ -21,8 +21,8 @@ func main() {
 		go checkWebsite(website, c)
 	}
 
-	for {
-		go checkWebsite(<-c, c)
+	for l := range c {
+		go checkWebsite(l, c)
 	}
 }
 
