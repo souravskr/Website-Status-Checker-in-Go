@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"net/http"
 	"os"
+	"time"
 )
 
 func main() {
@@ -22,7 +23,10 @@ func main() {
 	}
 
 	for l := range c {
-		go checkWebsite(l, c)
+		go func(link string) {
+			time.Sleep(2 * time.Second)
+			checkWebsite(link, c)
+		}(l)
 	}
 }
 
